@@ -17,5 +17,8 @@ public class HelloWorld {
         String coords[] = {"5","6"};
         Distance.main(coords);
 
+        SumOfTwoDice.roll();
+
+
     }
 }
