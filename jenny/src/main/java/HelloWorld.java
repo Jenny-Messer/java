@@ -19,6 +19,10 @@ public class HelloWorld {
 
         SumOfTwoDice.roll();
 
+        SpringSeason.withinDate(3,10);
+        SpringSeason.withinDate(3,30);
+
+
 
     }
 }
