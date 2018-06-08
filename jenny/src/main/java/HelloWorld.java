@@ -13,6 +13,9 @@ public class HelloWorld {
 
         //skipped initials.java bc it's a waste of time
 
+        //gets distance between (5,6) and (0,0)
+        String coords[] = {"5","6"};
+        Distance.main(coords);
 
     }
 }
