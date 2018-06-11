@@ -4,13 +4,12 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 
 import exceptions.NotEnoughCashException;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ATMTest {
+public class AustralianATMTest {
 
     @Test
     public void AtmInitialisesWithExpectedContents() {
@@ -21,7 +20,7 @@ public class ATMTest {
         actualContents.put(50, 50);
         actualContents.put(100, 100);
 
-        ATM newAtm = new ATM(actualContents);
+        AustralianATM newAtm = new AustralianATM(actualContents);
         Map<Integer, Integer> contents = newAtm.getContents();
 
         assertEquals(contents.size(), 4);
@@ -53,7 +52,7 @@ public class ATMTest {
         actualContents.put(50, 50);
         actualContents.put(100, 100);
 
-        ATM newAtm = new ATM(actualContents);
+        AustralianATM newAtm = new AustralianATM(actualContents);
 
         boolean isValidDispense = newAtm.validDispense(20);
 
@@ -70,7 +69,7 @@ public class ATMTest {
         actualContents.put(50, 50);
         actualContents.put(100, 100);
 
-        ATM newAtm = new ATM(actualContents);
+        AustralianATM newAtm = new AustralianATM(actualContents);
 
         newAtm.validDispense(678);
     }

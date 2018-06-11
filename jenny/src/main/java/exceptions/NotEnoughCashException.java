@@ -3,6 +3,7 @@
 package exceptions;
 
 public class NotEnoughCashException extends RuntimeException {
+
     public NotEnoughCashException() {
         super("Not enough cash for this transaction");
     }
