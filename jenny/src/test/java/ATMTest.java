@@ -3,6 +3,7 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertFalse;
 
+import exceptions.NotEnoughCashException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -60,7 +61,7 @@ public class ATMTest {
 
     }
 
-    @Test
+    @Test(expected = NotEnoughCashException.class)
     public void shouldInvalidateDispenseWhenNotEnoughCash() {
 
         Map<Integer, Integer> actualContents = new HashMap<Integer, Integer>();
@@ -71,10 +72,7 @@ public class ATMTest {
 
         ATM newAtm = new ATM(actualContents);
 
-        boolean isValidDispense = newAtm.validDispense(678);
-
-        assertFalse(isValidDispense);
-
+        newAtm.validDispense(678);
     }
 
 

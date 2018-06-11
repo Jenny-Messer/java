@@ -1,5 +1,7 @@
 // Copyright (c) 2018 Travelex Ltd
 
+import exceptions.NotEnoughCashException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +22,7 @@ public class ATM {
         return contents;
     }
 
-    public boolean validDispense(int withdrawAmmount){
+    public boolean validDispense(int withdrawAmmount) throws NotEnoughCashException {
 
         //checks if the money the user wants to take out can be provided by the ATM
 
@@ -55,7 +57,7 @@ public class ATM {
             return true;
         }
         else{
-            return false;
+            throw new NotEnoughCashException();
         }
     }
 
