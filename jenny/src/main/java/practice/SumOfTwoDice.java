@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Travelex Ltd
+package practice;// Copyright (c) 2018 Travelex Ltd
 
 public class SumOfTwoDice {
     public static void main(String[] args){
