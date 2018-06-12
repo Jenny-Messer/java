@@ -1,19 +1,11 @@
-
-import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertNotNull;
 
 import exceptions.NotEnoughCashException;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class AustralianATMTest {
 
@@ -134,8 +126,6 @@ public class AustralianATMTest {
 
 
     }
-
-    //tests for - add cash, repeated withdrawals?
 
     @Test
     public void shouldAddCorrectAmountOfCashToAtm() {

@@ -22,16 +22,35 @@ public class AtmApplication {
         Scanner scanner = new Scanner(System.in);
 
 
-        while(!exit) {
+        boolean login = true;
+        Customer newCustomer = new Customer(100, 1234, 12345678);
+
+        while(!exit && login) {
+
+            System.out.println("Login: \nEnter Customer Number: ");
+            int enteredCustomerNumber = scanner.nextInt();
+            System.out.println("Enter Pin: ");
+            int enteredPin = scanner.nextInt();
+
+            if ((enteredCustomerNumber == newCustomer.getCustomerNumber()) && (enteredPin == newCustomer.getPin())) {
+                System.out.println("Login successful");
+            }
+            else {
+                login = false;
+                System.out.println("Login Failed");
+            }
 
             System.out.println("Withdraw(1), Add a new type of note(2), refill ATM with original contents(3) or exit(3)? :");
             int withdrawOrRefill = scanner.nextInt();
 
+
+            //TODO seems to do 1 and 2 when 1 selected?
             switch (withdrawOrRefill){
                 case 1: withdraw(atm);
                 case 2: contents = addNewNoteToAtm(contents);
                 case 3: contents = initAtm(contents);
                 case 4: exit = true;
+                default: exit = true;
             }
 
         }
@@ -74,8 +93,23 @@ public class AtmApplication {
                                    + "\nE.g. to enter 5 $10 notes type : 10 5");
 
         Scanner scanner = new Scanner(System.in);
-        int noteKey = scanner.nextInt();
-        int noteVolume = scanner.nextInt();
+
+        int noteKey = 0;
+        int noteVolume = 0;
+
+        try {
+            noteKey = scanner.nextInt();
+
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid note type");
+        }
+
+        try {
+            noteVolume = scanner.nextInt();
+
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid volume of notes");
+        }
 
         System.out.println(noteKey + " " + noteVolume);
 
