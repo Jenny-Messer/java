@@ -4,16 +4,16 @@ import java.util.Map;
 
 public class Withdrawal {
     private Map<Integer, Integer> contents;
-    private String receipt;
 
     public Withdrawal() {
     }
 
+    //contents of withdrawal - not ATM right?
     public void setContents(Map<Integer, Integer> contents) {
         this.contents = contents;
     }
 
-    public void setReceipt(String receipt) {
-        this.receipt = receipt;
+    public Map<Integer, Integer> getContents() {
+        return contents;
     }
 }

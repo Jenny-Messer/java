@@ -2,8 +2,7 @@
 
 public interface ATM {
 
-    boolean validDispense(int amount);
+    Withdrawal validDispense(int amount);
 
-    Withdrawal dispense(int amount);
 
 }
