@@ -14,7 +14,6 @@ get/set contents
 valid dispense
         remove notes, make and populate withdrawal object, update customer balance
 remove notes from contents
-add new types of notes to atm
 get best combo of notes to remove
 get notes in ascending order
 get user
@@ -203,10 +202,32 @@ public class AustralianATMTest {
 
         Customer customer1 = new Customer(100, 1234, 12345);
 
-        Withdrawal isValidDispense = newAtm.validDispense(20, customer1);
+        //Withdrawal isValidDispense = newAtm.validDispense(20, customer1);
+
+        Map<Integer, Integer> removedNotes = new HashMap<Integer, Integer>();
+        removedNotes.put(10, 0);
+        removedNotes.put(20, 1);
+        removedNotes.put(50, 0);
+        removedNotes.put(100, 0);
+
+        customer1.updateBalance(removedNotes);
 
         assertEquals(customer1.getBalance(), 80);
 
+        removedNotes.put(10, 0);
+        removedNotes.put(20, 0);
+        removedNotes.put(50, 0);
+        removedNotes.put(100, -10);
+
+        customer1.updateBalance(removedNotes);
+
+        assertEquals(customer1.getBalance(), 1080);
+
+
     }
 
+    @Test
+    public void shouldInvalidateWithdrawalWhenNegativeWithdrawalFromUser() {
+
+    }
 }

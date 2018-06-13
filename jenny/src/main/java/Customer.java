@@ -1,5 +1,6 @@
 // Copyright (c) 2018 Travelex Ltd
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Customer extends User {
@@ -21,12 +22,11 @@ public class Customer extends User {
 
     public void updateBalance(Map<Integer, Integer> removedNotes){
 
-        //not sure what magic intellij did here
 
-        int totalToRemoveFromBalance = removedNotes.keySet().stream().mapToInt(removedNotes::get).sum();
+        for (Map.Entry<Integer, Integer> noteEntry : removedNotes.entrySet()) {
+            balance -= noteEntry.getKey() * noteEntry.getValue();
+        }
 
-        //this.setBalance(this.getBalance() - totalToRemoveFromBalance);
-        balance -= totalToRemoveFromBalance;
     }
 
 

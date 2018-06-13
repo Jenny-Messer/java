@@ -55,7 +55,7 @@ public class AtmApplication {
 
                 switch (withdrawOrRefill){
                     case 1: atmService.withdraw(atm, (Customer) user); break;
-                    case 2: throw new RuntimeException("we are lazy");
+                    case 2: atmService.checkBalance((Customer) user);
                     default: AtmApplication.setExit(true);
                 }
 

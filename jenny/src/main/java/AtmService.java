@@ -30,6 +30,7 @@ public class AtmService {
 
         System.out.println("\nEnter amount to withdraw: ");
         Scanner scanner = new Scanner(System.in);
+
         try {
             requestedAmount = scanner.nextInt();
 
@@ -48,6 +49,12 @@ public class AtmService {
         } catch (NotEnoughCashException e) {
             System.out.println("Not enough cash in ATM");
         }
+    }
+
+    public void checkBalance(Customer customer){
+
+
+
     }
 
 
