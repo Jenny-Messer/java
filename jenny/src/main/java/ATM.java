@@ -4,7 +4,11 @@ import java.util.Map;
 
 public interface ATM {
 
-    Withdrawal validDispense(int amount);
+    Withdrawal validDispense(int amount, Customer customer);
+
+    Map<Integer, Integer> getContents();
+
+    void setContents(Map<Integer, Integer> contents);
 
 
 }

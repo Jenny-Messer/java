@@ -2,7 +2,7 @@
 
 public class BankEmployee extends User {
 
-    public BankEmployee(int balance, int pin, int customerNumber){
-        super(pin, customerNumber, true);
+    public BankEmployee(int pin, int userNumber){
+        super(pin, userNumber);
     }
 }

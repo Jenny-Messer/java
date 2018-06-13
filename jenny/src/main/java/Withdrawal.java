@@ -8,7 +8,7 @@ public class Withdrawal {
     public Withdrawal() {
     }
 
-    //contents of withdrawal - not ATM right?
+    //contents of withdrawal - not ATM
     public void setContents(Map<Integer, Integer> contents) {
         this.contents = contents;
     }

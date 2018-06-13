@@ -1,28 +1,23 @@
 // Copyright (c) 2018 Travelex Ltd
 
-public class User {
+import java.util.UUID;
 
+public abstract class User {
+
+    private int userNumber;
     private int pin;
-    private int customerNumber;
 
-    public boolean isRefillAtmAccess() {
-        return refillAtmAccess;
-    }
-
-    private boolean refillAtmAccess;
-
-    public User(int pin, int customerNumber, boolean refillAtmAccess) {
+    public User(int pin, int userNumber) {
         this.pin = pin;
-        this.customerNumber = customerNumber;
-        this.refillAtmAccess = refillAtmAccess;
+        this.userNumber = userNumber;
     }
 
-    public int getCustomerNumber() {
-        return customerNumber;
+    public int getUserNumber() {
+        return userNumber;
     }
 
-    public void setCustomerNumber(int customerNumber) {
-        this.customerNumber = customerNumber;
+    public void setUserNumber(int userNumber) {
+        this.userNumber = userNumber;
     }
 
     public int getPin() {

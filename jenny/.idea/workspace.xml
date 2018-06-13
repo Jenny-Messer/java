@@ -2,12 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00b92ef4-e161-4553-9732-6059dd4031d1" name="Default" comment="TICKET-123 - did some things">
-      <change afterPath="$PROJECT_DIR$/src/main/java/BankEmployee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/AtmService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/UserDataAccess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/LoginFailedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/exceptions/UserNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/AtmServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ATM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ATM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/AtmApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AtmApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AustralianATM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/AustralianATM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/BankEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/BankEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Withdrawal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Withdrawal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/AustralianATMTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/AustralianATMTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,11 +28,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AtmApplication.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AtmApplication.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/AtmApplication.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="27" column="31" lean-forward="true" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+            <state relative-caret-position="541">
+              <caret line="69" column="13" lean-forward="true" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#517#518#0" expanded="true" />
+                <element signature="e#559#560#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AtmService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/AtmService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="855">
+              <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#481#482#0" expanded="true" />
+                <element signature="e#520#521#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AtmServiceTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/AtmServiceTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -36,37 +71,14 @@
       <file leaf-file-name="AustralianATM.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/AustralianATM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
+            <state relative-caret-position="132">
+              <caret line="78" column="17" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Withdrawal.class" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/target/classes/Withdrawal.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="25" lean-forward="true" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#423#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AustralianATMTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/AustralianATMTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#444#462#0" expanded="true" />
-                <element signature="e#1558#1576#0" expanded="true" />
-                <element signature="e#4873#4891#0" expanded="true" />
+                <element signature="e#366#367#0" expanded="true" />
+                <element signature="e#406#407#0" expanded="true" />
+                <element signature="e#551#552#0" expanded="true" />
+                <element signature="e#591#592#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -75,46 +87,44 @@
       <file leaf-file-name="Customer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Customer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
+            <state relative-caret-position="345">
+              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AustralianATMTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/AustralianATMTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
               <folding>
-                <element signature="e#438#439#0" expanded="true" />
-                <element signature="e#468#469#0" expanded="true" />
-                <element signature="e#511#512#0" expanded="true" />
-                <element signature="e#549#550#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#2080#2098#0" expanded="true" />
+                <element signature="e#2855#2873#0" expanded="true" />
+                <element signature="e#2487#2505#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BankEmployee.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/BankEmployee.java">
+      <file leaf-file-name="UserNotFoundException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/exceptions/UserNotFoundException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
-              <folding>
-                <element signature="e#168#169#0" expanded="true" />
-                <element signature="e#227#228#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/User.java">
+      <file leaf-file-name="Withdrawal.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/Withdrawal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+            <state relative-caret-position="60">
+              <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
               <folding>
-                <element signature="e#188#189#0" expanded="true" />
-                <element signature="e#278#279#0" expanded="true" />
-                <element signature="e#315#316#0" expanded="true" />
-                <element signature="e#372#373#0" expanded="true" />
-                <element signature="e#424#425#0" expanded="true" />
-                <element signature="e#451#452#0" expanded="true" />
-                <element signature="e#477#478#0" expanded="true" />
-                <element signature="e#512#513#0" expanded="true" />
-                <element signature="e#542#543#0" expanded="true" />
+                <element signature="e#262#263#0" expanded="true" />
+                <element signature="e#302#303#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,10 +136,27 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="JUnit4 Test Class" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>new cu</find>
+      <find>set</find>
+      <find>contents</find>
+      <find>withdraw</find>
+      <find>user</find>
+      <find>User user</find>
+      <find>getcon</find>
+      <find>usernot</find>
+      <find>NotEnoughCashException</find>
+      <find>throw</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/src/main/java/exceptions</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -154,14 +181,20 @@
         <option value="$PROJECT_DIR$/src/main/java/ATMdfg.java" />
         <option value="$PROJECT_DIR$/src/main/java/Withdrawl.java" />
         <option value="$PROJECT_DIR$/src/test/java/WithdrawalTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Withdrawal.java" />
-        <option value="$PROJECT_DIR$/src/main/java/AustralianATM.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ATM.java" />
-        <option value="$PROJECT_DIR$/src/test/java/AustralianATMTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/BankEmployee.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Customer.java" />
         <option value="$PROJECT_DIR$/src/main/java/User.java" />
+        <option value="$PROJECT_DIR$/src/test/java/AtmApplicationTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/UserDataAccess.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Withdrawal.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ATM.java" />
         <option value="$PROJECT_DIR$/src/main/java/AtmApplication.java" />
+        <option value="$PROJECT_DIR$/src/test/java/AtmServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Customer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/exceptions/UserNotFoundException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AustralianATM.java" />
+        <option value="$PROJECT_DIR$/src/test/java/AustralianATMTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/exceptions/LoginFailedException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AtmService.java" />
       </list>
     </option>
   </component>
@@ -217,6 +250,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="jenny" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jenny" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="exceptions" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="jenny" type="b2602c69:ProjectViewProjectNode" />
@@ -279,6 +320,9 @@
     <key name="CreateTestDialog.RecentsKey">
       <recent name="" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="exceptions" />
+    </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
     </key>
@@ -298,7 +342,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.AtmApplication">
+  <component name="RunManager" selected="JUnit.AustralianATMTest">
     <configuration name="AtmApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AtmApplication" />
       <module name="jenny" />
@@ -306,6 +350,40 @@
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="AtmApplicationTest.sdfg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jenny" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AtmApplicationTest" />
+      <option name="METHOD_NAME" value="sdfg" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="AtmApplicationTest.sdfsdfg" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="jenny" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="AtmApplicationTest" />
+      <option name="METHOD_NAME" value="sdfsdfg" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration name="AustralianATMTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="jenny" />
@@ -331,40 +409,6 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="AustralianATMTest" />
       <option name="METHOD_NAME" value="shouldAddCorrectAmountOfCashToAtm" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="AustralianATMTest.shouldCreateWithdrawalWithExpectedContents" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="jenny" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="AustralianATMTest" />
-      <option name="METHOD_NAME" value="shouldCreateWithdrawalWithExpectedContents" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration name="AustralianATMTest.shouldRemoveCorrectAmountOfCashFromAtm" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="jenny" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="AustralianATMTest" />
-      <option name="METHOD_NAME" value="shouldRemoveCorrectAmountOfCashFromAtm" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -463,18 +507,18 @@
     <list>
       <item itemvalue="Maven.App" />
       <item itemvalue="JUnit.AustralianATMTest" />
-      <item itemvalue="JUnit.AustralianATMTest.shouldCreateWithdrawalWithExpectedContents" />
-      <item itemvalue="JUnit.AustralianATMTest.shouldRemoveCorrectAmountOfCashFromAtm" />
       <item itemvalue="Application.AtmApplication" />
       <item itemvalue="JUnit.AustralianATMTest.shouldAddCorrectAmountOfCashToAtm" />
+      <item itemvalue="JUnit.AtmApplicationTest.sdfg" />
+      <item itemvalue="JUnit.AtmApplicationTest.sdfsdfg" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AtmApplication" />
         <item itemvalue="JUnit.AustralianATMTest" />
+        <item itemvalue="Application.AtmApplication" />
+        <item itemvalue="JUnit.AtmApplicationTest.sdfsdfg" />
+        <item itemvalue="JUnit.AtmApplicationTest.sdfg" />
         <item itemvalue="JUnit.AustralianATMTest.shouldAddCorrectAmountOfCashToAtm" />
-        <item itemvalue="JUnit.AustralianATMTest.shouldCreateWithdrawalWithExpectedContents" />
-        <item itemvalue="JUnit.AustralianATMTest.shouldRemoveCorrectAmountOfCashFromAtm" />
       </list>
     </recent_temporary>
   </component>
@@ -491,32 +535,11 @@
       <workItem from="1528447485269" duration="1137000" />
       <workItem from="1528449359394" duration="1861000" />
       <workItem from="1528451281568" duration="20020000" />
-      <workItem from="1528729301374" duration="20937000" />
+      <workItem from="1528729301374" duration="36395000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AustralianATMTest - 2018.06.12 at 11h 24m 08s.xml">
-      <configuration name="AustralianATMTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AustralianATMTest - 2018.06.12 at 11h 33m 12s.xml">
-      <configuration name="AustralianATMTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AustralianATMTest - 2018.06.12 at 11h 36m 06s.xml">
-      <configuration name="AustralianATMTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AustralianATMTest - 2018.06.12 at 11h 39m 59s.xml">
-      <configuration name="AustralianATMTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AustralianATMTest_shouldAddCorrectAmountOfCashToAtm - 2018.06.12 at 12h 06m 40s.xml">
-      <configuration name="AustralianATMTest.shouldAddCorrectAmountOfCashToAtm" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AustralianATMTest_shouldAddCorrectAmountOfCashToAtm - 2018.06.12 at 12h 10m 05s.xml">
-      <configuration name="AustralianATMTest.shouldAddCorrectAmountOfCashToAtm" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AustralianATMTest_shouldAddCorrectAmountOfCashToAtm - 2018.06.12 at 12h 10m 11s.xml">
-      <configuration name="AustralianATMTest.shouldAddCorrectAmountOfCashToAtm" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AustralianATMTest_shouldAddCorrectAmountOfCashToAtm - 2018.06.12 at 13h 31m 19s.xml">
       <configuration name="AustralianATMTest.shouldAddCorrectAmountOfCashToAtm" configurationId="JUnit" />
     </history-entry>
@@ -526,9 +549,30 @@
     <history-entry file="AustralianATMTest - 2018.06.12 at 15h 53m 42s.xml">
       <configuration name="AustralianATMTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="AtmApplicationTest_sdfg - 2018.06.13 at 10h 56m 29s.xml">
+      <configuration name="AtmApplicationTest.sdfg" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AtmApplicationTest_sdfsdfg - 2018.06.13 at 11h 24m 35s.xml">
+      <configuration name="AtmApplicationTest.sdfsdfg" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AtmApplicationTest_sdfsdfg - 2018.06.13 at 11h 24m 39s.xml">
+      <configuration name="AtmApplicationTest.sdfsdfg" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AustralianATMTest - 2018.06.13 at 14h 38m 06s.xml">
+      <configuration name="AustralianATMTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AustralianATMTest - 2018.06.13 at 14h 55m 01s.xml">
+      <configuration name="AustralianATMTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AustralianATMTest - 2018.06.13 at 15h 08m 12s.xml">
+      <configuration name="AustralianATMTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AustralianATMTest - 2018.06.13 at 15h 10m 05s.xml">
+      <configuration name="AustralianATMTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43955000" />
+    <option name="totallyTimeSpent" value="59413000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -536,27 +580,27 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.55128205" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.22364673" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.36162987" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.2777778" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.31196582" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.46153846" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.74358976" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2584814" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2584814" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3293718" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32905984" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.11396012" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.11396012" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -602,7 +646,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="16" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -615,69 +659,16 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/AtmApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/src.zip!/java/util/Scanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4545">
-          <caret line="303" column="19" selection-start-line="303" selection-start-column="19" selection-end-line="303" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/exceptions/NotEnoughCashException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#240#241#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/src.zip!/java/lang/Exception.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="64" column="11" selection-start-line="64" selection-start-column="11" selection-end-line="64" selection-end-column="11" />
-          <folding>
-            <element signature="e#1663#1664#0" expanded="true" />
-            <element signature="e#1693#1694#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/src.zip!/java/util/HashMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2070">
-          <caret line="138" column="15" selection-start-line="138" selection-start-column="15" selection-end-line="138" selection-end-column="23" />
-          <folding>
-            <element signature="e#19327#19328#0" expanded="true" />
-            <element signature="e#19410#19411#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/src.zip!/java/util/Map.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1920">
-          <caret line="128" column="17" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/AustralianATM.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#366#367#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -688,9 +679,9 @@
           <caret line="70" column="37" lean-forward="true" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#444#462#0" expanded="true" />
-            <element signature="e#1558#1576#0" expanded="true" />
-            <element signature="e#4873#4891#0" expanded="true" />
+            <element signature="e#2080#2098#0" expanded="true" />
+            <element signature="e#2855#2873#0" expanded="true" />
+            <element signature="e#2487#2505#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -722,6 +713,8 @@
           <caret line="7" selection-start-line="7" selection-end-line="7" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#517#518#0" expanded="true" />
+            <element signature="e#559#560#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -779,17 +772,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/exceptions/NotEnoughCashException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-          <folding>
-            <element signature="e#179#180#0" expanded="true" />
-            <element signature="e#240#241#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -801,18 +783,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="128" column="17" selection-start-line="128" selection-start-column="17" selection-end-line="128" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Withdrawal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="48" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-          <folding>
-            <element signature="e#253#254#0" expanded="true" />
-            <element signature="e#293#294#0" expanded="true" />
-            <element signature="e#390#391#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -861,31 +831,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ATM.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/AustralianATMTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="128" lean-forward="true" selection-start-line="128" selection-end-line="128" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#444#462#0" expanded="true" />
-            <element signature="e#1558#1576#0" expanded="true" />
-            <element signature="e#4873#4891#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/target/classes/AtmApplication.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-95">
           <folding>
             <element signature="e#0#2753#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/AtmApplicationTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -900,64 +860,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/AustralianATM.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        <state relative-caret-position="60">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/BankEmployee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ATM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/UserDataAccess.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="31" column="67" lean-forward="true" selection-start-line="31" selection-start-column="67" selection-end-line="31" selection-end-column="67" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Customer.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/exceptions/NotEnoughCashException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="42" lean-forward="true" selection-start-line="7" selection-start-column="42" selection-end-line="7" selection-end-column="42" />
-          <folding>
-            <element signature="e#438#439#0" expanded="true" />
-            <element signature="e#468#469#0" expanded="true" />
-            <element signature="e#511#512#0" expanded="true" />
-            <element signature="e#549#550#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/BankEmployee.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Withdrawal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+        <state relative-caret-position="60">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
           <folding>
-            <element signature="e#168#169#0" expanded="true" />
-            <element signature="e#227#228#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-          <folding>
-            <element signature="e#188#189#0" expanded="true" />
-            <element signature="e#278#279#0" expanded="true" />
-            <element signature="e#315#316#0" expanded="true" />
-            <element signature="e#372#373#0" expanded="true" />
-            <element signature="e#424#425#0" expanded="true" />
-            <element signature="e#451#452#0" expanded="true" />
-            <element signature="e#477#478#0" expanded="true" />
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#542#543#0" expanded="true" />
+            <element signature="e#262#263#0" expanded="true" />
+            <element signature="e#302#303#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/AtmApplication.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="27" column="31" lean-forward="true" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+        <state relative-caret-position="541">
+          <caret line="69" column="13" lean-forward="true" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#517#518#0" expanded="true" />
+            <element signature="e#559#560#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/statements/ExpectException.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="32" column="9" lean-forward="true" selection-start-line="32" selection-start-column="9" selection-end-line="32" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/AtmServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/exceptions/UserNotFoundException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AustralianATM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="78" column="17" selection-start-line="78" selection-start-column="12" selection-end-line="78" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#366#367#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#551#552#0" expanded="true" />
+            <element signature="e#591#592#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/exceptions/LoginFailedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="7" column="53" selection-start-line="7" selection-start-column="53" selection-end-line="7" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/AtmService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="855">
+          <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#481#482#0" expanded="true" />
+            <element signature="e#520#521#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/AustralianATMTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="8" lean-forward="true" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2080#2098#0" expanded="true" />
+            <element signature="e#2855#2873#0" expanded="true" />
+            <element signature="e#2487#2505#0" expanded="true" />
           </folding>
         </state>
       </provider>

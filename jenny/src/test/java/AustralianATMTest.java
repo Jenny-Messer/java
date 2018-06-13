@@ -2,10 +2,25 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 import exceptions.NotEnoughCashException;
+import exceptions.UserNotFoundException;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
+/*
+Tests TODO:
+get/set contents
+valid dispense
+        remove notes, make and populate withdrawal object, update customer balance
+remove notes from contents
+add new types of notes to atm
+get best combo of notes to remove
+get notes in ascending order
+get user
+
+init objects with expected contents (customer, employee)
+ */
 
 public class AustralianATMTest {
 
@@ -35,14 +50,10 @@ public class AustralianATMTest {
         assertEquals(fiftyDollarContents, new Integer(50));
         assertEquals(hundredDollarContents, new Integer(100));
 
-//        Integer tenDollarNotesCount = contents.get(10);
-//        assertEquals, 2);
-//        assertEquals(contents.size(), 2);
-
     }
 
-    @Test
-    public void shouldValidateDispenseWhenEnoughCash() {
+    @Test //split?
+    public void shouldValidateDispenseWhenEnoughCashInAtmAndUsersAccount() {
 
         Map<Integer, Integer> actualContents = new HashMap<Integer, Integer>();
         actualContents.put(10, 10);
@@ -52,14 +63,32 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Withdrawal isValidDispense = newAtm.validDispense(20);
+        Customer customer1 = new Customer(100, 1234, 12345);
+
+        Withdrawal isValidDispense = newAtm.validDispense(20, customer1);
 
         assertNotNull(isValidDispense);
 
     }
 
     @Test(expected = NotEnoughCashException.class)
-    public void shouldInvalidateDispenseWhenNotEnoughCash() {
+    public void shouldInvalidateDispenseWhenNotEnoughCashInAtm() {
+
+        Map<Integer, Integer> actualContents = new HashMap<Integer, Integer>();
+        actualContents.put(10, 0);
+        actualContents.put(20, 0);
+        actualContents.put(50, 0);
+        actualContents.put(100, 0);
+
+        AustralianATM newAtm = new AustralianATM(actualContents);
+
+        Customer customer1 = new Customer(100, 1234, 12345);
+
+        newAtm.validDispense(50, customer1);
+    }
+
+    @Test(expected = NotEnoughCashException.class) //TODO use different exception?
+    public void shouldInvalidateDispenseWhenNotEnoughCashInUsersAccount() {
 
         Map<Integer, Integer> actualContents = new HashMap<Integer, Integer>();
         actualContents.put(10, 10);
@@ -69,7 +98,9 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        newAtm.validDispense(678);
+        Customer customer1 = new Customer(0, 1234, 12345);
+
+        newAtm.validDispense(50, customer1);
     }
 
     @Test
@@ -83,7 +114,9 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(atmContents);
 
-        Withdrawal withdrawal = newAtm.validDispense(20);
+        Customer customer1 = new Customer(100, 1234, 12345);
+
+        Withdrawal withdrawal = newAtm.validDispense(20, customer1);
 
         Map<Integer, Integer> withdrawalContents = withdrawal.getContents();
 
@@ -93,14 +126,14 @@ public class AustralianATMTest {
         assertEquals(withdrawalContents.get(100), new Integer(0));
 
 
-        Withdrawal secondWithdrawal = newAtm.validDispense(150);
+        Withdrawal secondWithdrawal = newAtm.validDispense(50, customer1);
 
         Map<Integer, Integer> secondWithdrawalContents = secondWithdrawal.getContents();
 
         assertEquals(secondWithdrawalContents.get(10), new Integer(0));
         assertEquals(secondWithdrawalContents.get(20), new Integer(0));
         assertEquals(secondWithdrawalContents.get(50), new Integer(1));
-        assertEquals(secondWithdrawalContents.get(100), new Integer(1));
+        assertEquals(secondWithdrawalContents.get(100), new Integer(0));
 
     }
 
@@ -115,7 +148,9 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(atmContents);
 
-        Withdrawal withdrawal = newAtm.validDispense(20);
+        Customer customer1 = new Customer(100, 1234, 12345);
+
+        Withdrawal withdrawal = newAtm.validDispense(20, customer1);
 
         Map<Integer, Integer> withdrawalContents = withdrawal.getContents();
 
@@ -155,5 +190,23 @@ public class AustralianATMTest {
 
     }
 
+    @Test
+    public void shouldCorrectlyUpdateUsersBalanceAfterWithdrawal() {
+
+        Map<Integer, Integer> actualContents = new HashMap<Integer, Integer>();
+        actualContents.put(10, 10);
+        actualContents.put(20, 20);
+        actualContents.put(50, 50);
+        actualContents.put(100, 100);
+
+        AustralianATM newAtm = new AustralianATM(actualContents);
+
+        Customer customer1 = new Customer(100, 1234, 12345);
+
+        Withdrawal isValidDispense = newAtm.validDispense(20, customer1);
+
+        assertEquals(customer1.getBalance(), 80);
+
+    }
 
 }

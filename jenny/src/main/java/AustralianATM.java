@@ -17,34 +17,36 @@ public class AustralianATM implements ATM {
     }
 
     public Map<Integer, Integer> getContents() {
+
         return contents;
     }
 
-    public Withdrawal validDispense(int withdrawAmount) throws NotEnoughCashException {
+    public void setContents(Map<Integer, Integer> contents) {
+        this.contents = contents;
+    }
 
-        //checks if the money the user wants to take out can be provided by the AustralianATM
-
-        /*
-        use as many of the largest note as possible, then the next largest etc
-        every time target amount is overshot, move to smaller note
-
-        if after all notes of all sizes tried and the exact amount not reached, throw exception
-        else return true
-        */
+    public Withdrawal validDispense(int withdrawAmount, Customer customer) throws NotEnoughCashException {
 
         int withdrawTry = 0;
 
-
+        if (withdrawAmount > customer.getBalance()) {
+            throw new NotEnoughCashException();
+        }
         Map<Integer, Integer> removedNotes = getNotesToRemove(withdrawAmount, withdrawTry);
 
         removeNotesFromContents(removedNotes);
 
         Withdrawal withdrawal = new Withdrawal();
         withdrawal.setContents(removedNotes);
+
+        customer.updateBalance(removedNotes);
+
         return withdrawal;
 
 
     }
+
+
 
     private void removeNotesFromContents(Map<Integer, Integer> removedNotes){
         contents.keySet()
