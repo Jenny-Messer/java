@@ -5,6 +5,6 @@ package exceptions;
 public class UserNotFoundException extends RuntimeException {
 
     public UserNotFoundException() {
-        super("User does not exist");
+        super("model.User does not exist");
     }
 }

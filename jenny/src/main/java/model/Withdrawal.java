@@ -1,14 +1,15 @@
-// Copyright (c) 2018 Travelex Ltd
+package model;// Copyright (c) 2018 Travelex Ltd
 
 import java.util.Map;
 
 public class Withdrawal {
     private Map<Integer, Integer> contents;
 
+
     public Withdrawal() {
     }
 
-    //contents of withdrawal - not ATM
+    //contents of withdrawal - not model.ATM
     public void setContents(Map<Integer, Integer> contents) {
         this.contents = contents;
     }

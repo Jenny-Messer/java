@@ -1,4 +1,4 @@
-// Copyright (c) 2018 Travelex Ltd
+package model;// Copyright (c) 2018 Travelex Ltd
 
 import java.util.UUID;
 

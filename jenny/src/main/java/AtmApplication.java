@@ -1,16 +1,20 @@
 // Copyright (c) 2018 Travelex Ltd
 
-import exceptions.UserNotFoundException;
+import model.ATM;
+import model.AustralianATM;
+import model.BankEmployee;
+import model.Customer;
+import model.User;
+import service.AtmService;
+import service.UserDataAccessImpl;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Scanner;
 
 public class AtmApplication {
 
-    //TODO move this into the new class
-    private static UserDataAccess userDataAccess = new UserDataAccess();
+    private static UserDataAccessImpl userDataAccess = new UserDataAccessImpl();
 
     private static AtmService atmService;
 
@@ -20,7 +24,6 @@ public class AtmApplication {
 
     private static Boolean exit = false;
 
-
     public static void main(String[] args) {
 
         Map<Integer, Integer> contents = new HashMap<>();
@@ -29,10 +32,10 @@ public class AtmApplication {
         contents.put(50, 50);
         contents.put(100, 100);
 
+
         ATM atm = new AustralianATM(contents);
 
-        atmService = new AtmService(atm);
-
+        atmService = new AtmService(atm, userDataAccess);
 
         exit = false;
 
@@ -55,8 +58,8 @@ public class AtmApplication {
 
                 switch (withdrawOrRefill){
                     case 1: atmService.withdraw(atm, (Customer) user); break;
-                    case 2: atmService.checkBalance((Customer) user);
-                    default: AtmApplication.setExit(true);
+                    case 2: atmService.checkBalance((Customer) user); break;
+                    default: exit = true;
                 }
 
             } else if (user instanceof BankEmployee) {
@@ -65,13 +68,9 @@ public class AtmApplication {
 
                 switch (withdrawOrRefill){
                     case 1: atmService.addNewNoteToAtm(contents); break;
-                    default: AtmApplication.setExit(true);
+                    default: exit = true;
                 }
             }
-
-
-
-
 
 
 

@@ -1,19 +1,22 @@
-// Copyright (c) 2018 Travelex Ltd
+package service;// Copyright (c) 2018 Travelex Ltd
 
-import java.util.ArrayList;
+import model.BankEmployee;
+import model.Customer;
+import model.User;
+
+import java.math.BigDecimal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class UserDataAccess {
+public class UserDataAccessImpl implements UserDataAccess {
 
     private static Map<Integer , User> users = new HashMap<>();
 
-    public UserDataAccess() {
+    public UserDataAccessImpl() {
 
-        Customer customer1 = new Customer(100, 1234, 12345);
-        Customer customer2 = new Customer(0, 9876, 23456);
+        Customer customer1 = new Customer(new BigDecimal(100), 1234, 12345, "GBP");
+        Customer customer2 = new Customer(BigDecimal.ZERO, 9876, 23456, "USD");
 
         BankEmployee employee1 = new BankEmployee(1234, 34567);
         BankEmployee employee2 = new BankEmployee(9876, 45678);

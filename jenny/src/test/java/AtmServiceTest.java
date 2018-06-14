@@ -1,5 +1,4 @@
-import static org.junit.Assert.*;
-
+import model.AustralianATM;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -11,7 +10,7 @@ public class AtmServiceTest {
     @Test
     public void sdfgdsfg() {
         AustralianATM atm = new AustralianATM(new HashMap<>());
-        AtmService atmService = new AtmService(atm);
+        //service.AtmService atmService = new service.AtmService(atm);
 
         //atmService.
     }

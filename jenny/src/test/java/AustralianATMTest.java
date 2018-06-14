@@ -2,9 +2,15 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 import exceptions.NotEnoughCashException;
-import exceptions.UserNotFoundException;
+import model.AustralianATM;
+import model.Customer;
+import model.Withdrawal;
 import org.junit.Test;
+import service.AtmService;
+import service.ExchangeServiceImpl;
+import service.UserDataAccessImpl;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -62,9 +68,9 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Customer customer1 = new Customer(100, 1234, 12345);
+        Customer customer1 = new Customer(new BigDecimal(100), 1234, 12345, "USD");
 
-        Withdrawal isValidDispense = newAtm.validDispense(20, customer1);
+        Withdrawal isValidDispense = newAtm.validDispense(new BigDecimal(20), customer1);
 
         assertNotNull(isValidDispense);
 
@@ -81,9 +87,9 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Customer customer1 = new Customer(100, 1234, 12345);
+        Customer customer1 = new Customer(new BigDecimal(100), 1234, 12345, "USD");
 
-        newAtm.validDispense(50, customer1);
+        newAtm.validDispense(new BigDecimal(50), customer1);
     }
 
     @Test(expected = NotEnoughCashException.class) //TODO use different exception?
@@ -97,9 +103,9 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Customer customer1 = new Customer(0, 1234, 12345);
+        Customer customer1 = new Customer(new BigDecimal(0), 1234, 12345, "USD");
 
-        newAtm.validDispense(50, customer1);
+        newAtm.validDispense(new BigDecimal(50), customer1);
     }
 
     @Test
@@ -113,9 +119,9 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(atmContents);
 
-        Customer customer1 = new Customer(100, 1234, 12345);
+        Customer customer1 = new Customer(new BigDecimal(100), 1234, 12345, "USD");
 
-        Withdrawal withdrawal = newAtm.validDispense(20, customer1);
+        Withdrawal withdrawal = newAtm.validDispense(new BigDecimal(20), customer1);
 
         Map<Integer, Integer> withdrawalContents = withdrawal.getContents();
 
@@ -125,7 +131,7 @@ public class AustralianATMTest {
         assertEquals(withdrawalContents.get(100), new Integer(0));
 
 
-        Withdrawal secondWithdrawal = newAtm.validDispense(50, customer1);
+        Withdrawal secondWithdrawal = newAtm.validDispense(new BigDecimal(50), customer1);
 
         Map<Integer, Integer> secondWithdrawalContents = secondWithdrawal.getContents();
 
@@ -147,9 +153,9 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(atmContents);
 
-        Customer customer1 = new Customer(100, 1234, 12345);
+        Customer customer1 = new Customer(new BigDecimal(100), 1234, 12345, "USD");
 
-        Withdrawal withdrawal = newAtm.validDispense(20, customer1);
+        Withdrawal withdrawal = newAtm.validDispense(new BigDecimal(20), customer1);
 
         Map<Integer, Integer> withdrawalContents = withdrawal.getContents();
 
@@ -170,7 +176,7 @@ public class AustralianATMTest {
         atmContents.put(50, 50);
         atmContents.put(100, 100);
 
-        //refill same size as original so if added immediately should double no. of notes in ATM
+        //refill same size as original so if added immediately should double no. of notes in model.ATM
         Map<Integer, Integer> atmRefillContents = new HashMap<Integer, Integer>();
         atmRefillContents.put(10, 10);
         atmRefillContents.put(20, 20);
@@ -200,9 +206,11 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Customer customer1 = new Customer(100, 1234, 12345);
+        Customer customer1 = new Customer(new BigDecimal(100), 1234, 12345, "USD");
 
-        //Withdrawal isValidDispense = newAtm.validDispense(20, customer1);
+
+
+        //model.Withdrawal isValidDispense = newAtm.validDispense(20, customer1);
 
         Map<Integer, Integer> removedNotes = new HashMap<Integer, Integer>();
         removedNotes.put(10, 0);
@@ -210,18 +218,22 @@ public class AustralianATMTest {
         removedNotes.put(50, 0);
         removedNotes.put(100, 0);
 
-        customer1.updateBalance(removedNotes);
+        UserDataAccessImpl userDataAccess = new UserDataAccessImpl();
+        ExchangeServiceImpl exchangeService = new ExchangeServiceImpl(userDataAccess);
 
-        assertEquals(customer1.getBalance(), 80);
+        exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(newAtm.getCurrency(), customer1.getUserNumber(),removedNotes );
+
+        assertEquals(customer1.getBalance(), new BigDecimal(80));
 
         removedNotes.put(10, 0);
         removedNotes.put(20, 0);
         removedNotes.put(50, 0);
         removedNotes.put(100, -10);
 
-        customer1.updateBalance(removedNotes);
+        exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(newAtm.getCurrency(), customer1.getUserNumber(),removedNotes );
 
-        assertEquals(customer1.getBalance(), 1080);
+
+        assertEquals(customer1.getBalance(), new BigDecimal(1080));
 
 
     }
