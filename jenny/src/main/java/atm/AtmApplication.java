@@ -1,30 +1,37 @@
-// Copyright (c) 2018 Travelex Ltd
+package atm;// Copyright (c) 2018 Travelex Ltd
 
-import model.ATM;
-import model.AustralianATM;
-import model.BankEmployee;
-import model.Customer;
-import model.User;
-import service.AtmService;
-import service.UserDataAccessImpl;
-
+import atm.model.ATM;
+import atm.model.AustralianATM;
+import atm.model.BankEmployee;
+import atm.model.Customer;
+import atm.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+import atm.service.AtmService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class AtmApplication {
-
-    private static UserDataAccessImpl userDataAccess = new UserDataAccessImpl();
+@SpringBootApplication
+@ComponentScan
+public class AtmApplication implements CommandLineRunner {
 
     private static AtmService atmService;
 
-    public static void setExit(Boolean exit) {
-        AtmApplication.exit = exit;
+    @Autowired
+    public AtmApplication(AtmService atmService){
+        AtmApplication.atmService = atmService;
     }
 
-    private static Boolean exit = false;
+    public static void main(String... args) {
+        SpringApplication.run(AtmApplication.class, args);
+    }
 
-    public static void main(String[] args) {
+    @Override
+    public void run(String... args) {
 
         Map<Integer, Integer> contents = new HashMap<>();
         contents.put(10, 10);
@@ -35,9 +42,7 @@ public class AtmApplication {
 
         ATM atm = new AustralianATM(contents);
 
-        atmService = new AtmService(atm, userDataAccess);
-
-        exit = false;
+        Boolean exit = false;
 
         Scanner scanner = new Scanner(System.in);
 

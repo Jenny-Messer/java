@@ -1,6 +1,6 @@
 // Copyright (c) 2018 Travelex Ltd
 
-package exceptions;
+package atm.exceptions;
 
 public class NotEnoughCashException extends RuntimeException {
 

@@ -1,12 +1,14 @@
-package service;// Copyright (c) 2018 Travelex Ltd
+package atm.service;// Copyright (c) 2018 Travelex Ltd
 
-import exceptions.LoginFailedException;
-import exceptions.NotEnoughCashException;
-import exceptions.UserNotFoundException;
-import model.ATM;
-import model.Customer;
-import model.User;
-import model.Withdrawal;
+import atm.exceptions.LoginFailedException;
+import atm.exceptions.NotEnoughCashException;
+import atm.exceptions.UserNotFoundException;
+import atm.model.ATM;
+import atm.model.Customer;
+import atm.model.User;
+import atm.model.Withdrawal;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.InputMismatchException;
@@ -14,21 +16,14 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
 
+@Service
 public class AtmService {
 
+    @Autowired
     private UserDataAccess userDataAccess;
 
-    private ATM atm;
-
-    public AtmService(ATM atm, UserDataAccess userDataAccess) {
-        this.atm = atm;
-        this.userDataAccess = userDataAccess;
-    }
-
-    public Map<Integer , Integer> getAtmContents() {
-        return atm.getContents();
-    }
-
+    @Autowired
+    private ExchangeService exchangeService;
 
     public void withdraw(ATM atm, Customer customer){
         BigDecimal requestedAmount = BigDecimal.ZERO;
@@ -42,14 +37,12 @@ public class AtmService {
 
         //check if user's currency is same as ATM currency
 
-        ExchangeServiceImpl exchangeService = new ExchangeServiceImpl(userDataAccess);
-
-        if (!customer.getCurrency().equals(atm.getCurrency())){
+        if (!customer.getAccount().getCurrency().equals(atm.getCurrency())){
 
             BigDecimal exchangedRequestedAmount =
-                    exchangeService.findRightConversion(requestedAmount, customer.getCurrency(), atm.getCurrency());
+                    exchangeService.findRightConversion(requestedAmount, customer.getAccount().getCurrency(), atm.getCurrency());
 
-            System.out.println("Your currency is " + customer.getCurrency()
+            System.out.println("Your currency is " + customer.getAccount().getCurrency()
                                        + ", this ATM dispenses " + atm.getCurrency() + ". \n"
                                        + "You requested " + requestedAmount
                                        + "  the ATM will attempt to dispense  " + exchangedRequestedAmount + ".\n"
@@ -66,7 +59,7 @@ public class AtmService {
 
                 requestedAmount = validPositiveInput(requestedAmount);
                 //this requested amount is in atm currency
-                BigDecimal amountToRemove = exchangeService.findRightConversion(requestedAmount, atm.getCurrency(), customer.getCurrency());
+                BigDecimal amountToRemove = exchangeService.findRightConversion(requestedAmount, atm.getCurrency(), customer.getAccount().getCurrency());
 
                 checkBalanceEnoughToWithdraw(amountToRemove, customer);
 
@@ -122,7 +115,7 @@ public class AtmService {
     //terrible name
     public void checkBalanceEnoughToWithdraw(BigDecimal withdrawAmount, Customer customer){
 
-        if (0 < withdrawAmount.compareTo(customer.getBalance())) {
+        if (0 < withdrawAmount.compareTo(customer.getAccount().getBalance())) {
             throw new NotEnoughCashException();
         }
 
@@ -130,7 +123,7 @@ public class AtmService {
 
     public void checkBalance(Customer customer){
 
-        System.out.println("The balance for account " + customer.getUserNumber() + " is $" + customer.getBalance());
+        System.out.println("The balance for account " + customer.getUserNumber() + " is $" + customer.getAccount().getBalance());
 
     }
 
@@ -143,13 +136,15 @@ public class AtmService {
             throw new LoginFailedException();
         }
 
+        System.out.println("Login successful");
+
         return user;
 
     }
 
     public Map<Integer, Integer> addNewNoteToAtm(Map<Integer, Integer> contents){
 
-        //user types 10 5 to put 5 10s in the model.ATM
+        //user types 10 5 to put 5 10s in the atm.model.ATM
         //input Done when all note types entered
 
         //new note types?

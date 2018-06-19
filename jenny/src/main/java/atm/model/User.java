@@ -1,6 +1,4 @@
-package model;// Copyright (c) 2018 Travelex Ltd
-
-import java.util.UUID;
+package atm.model;// Copyright (c) 2018 Travelex Ltd
 
 public abstract class User {
 

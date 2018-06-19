@@ -1,10 +1,10 @@
 // Copyright (c) 2018 Travelex Ltd
 
-package exceptions;
+package atm.exceptions;
 
 public class UserNotFoundException extends RuntimeException {
 
     public UserNotFoundException() {
-        super("model.User does not exist");
+        super("User does not exist");
     }
 }

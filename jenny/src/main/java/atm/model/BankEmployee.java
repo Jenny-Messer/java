@@ -1,4 +1,4 @@
-package model;// Copyright (c) 2018 Travelex Ltd
+package atm.model;// Copyright (c) 2018 Travelex Ltd
 
 public class BankEmployee extends User {
 

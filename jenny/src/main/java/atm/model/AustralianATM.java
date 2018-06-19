@@ -1,9 +1,6 @@
-package model;// Copyright (c) 2018 Travelex Ltd
+package atm.model;// Copyright (c) 2018 Travelex Ltd
 
-import exceptions.NotEnoughCashException;
-import service.AtmService;
-import service.ExchangeServiceImpl;
-
+import atm.exceptions.NotEnoughCashException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +20,6 @@ public class AustralianATM implements ATM {
     }
 
     public Map<Integer, Integer> getContents() {
-
         return contents;
     }
 

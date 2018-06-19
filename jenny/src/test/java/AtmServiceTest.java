@@ -1,4 +1,4 @@
-import model.AustralianATM;
+import atm.model.AustralianATM;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -10,7 +10,7 @@ public class AtmServiceTest {
     @Test
     public void sdfgdsfg() {
         AustralianATM atm = new AustralianATM(new HashMap<>());
-        //service.AtmService atmService = new service.AtmService(atm);
+        //atm.service.AtmService atmService = new atm.service.AtmService(atm);
 
         //atmService.
     }
