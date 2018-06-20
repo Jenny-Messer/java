@@ -14,8 +14,8 @@ public interface UserDataAccess {
 
     public void removeUser(int userId);
 
-    public void modifyUser(int userId, Integer newId, Integer newPin);
+    public void modifyUser(int userId, Integer newPin);
 
-    public void modifyAccount(int userId, BigDecimal balance, String currency);
+    public void modifyAccount(int userId, int accountId, BigDecimal balance, String currency);
 
 }

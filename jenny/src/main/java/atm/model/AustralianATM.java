@@ -1,6 +1,6 @@
 package atm.model;// Copyright (c) 2018 Travelex Ltd
 
-import atm.exceptions.NotEnoughCashException;
+import atm.exceptions.NotEnoughCashInAtmException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +31,7 @@ public class AustralianATM implements ATM {
         this.contents = contents;
     }
 
-    public Withdrawal validDispense(BigDecimal withdrawAmount, Customer customer) throws NotEnoughCashException {
+    public Withdrawal validDispense(BigDecimal withdrawAmount, Customer customer) throws NotEnoughCashInAtmException {
 
         //withdraw request must be in same currency as ATM
 
@@ -79,7 +79,7 @@ public class AustralianATM implements ATM {
         }
 
         if (!withdrawAmount.equals(withdrawTry)) {
-            throw new NotEnoughCashException();
+            throw new NotEnoughCashInAtmException();
         }
 
         return removedNotes;

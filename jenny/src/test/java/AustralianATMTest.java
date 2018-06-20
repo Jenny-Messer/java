@@ -1,7 +1,8 @@
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
-import atm.exceptions.NotEnoughCashException;
+import atm.exceptions.NotEnoughCashInAccountException;
+import atm.exceptions.NotEnoughCashInAtmException;
 import atm.model.Account;
 import atm.model.AustralianATM;
 import atm.model.Customer;
@@ -68,7 +69,7 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD");
+        Account account = new Account(new BigDecimal(100), "AUD", 12345);
 
         Customer customer1 = new Customer(1234, 12345, account);
 
@@ -78,7 +79,7 @@ public class AustralianATMTest {
 
     }
 
-    @Test(expected = NotEnoughCashException.class)
+    @Test(expected = NotEnoughCashInAtmException.class)
     public void shouldInvalidateDispenseWhenNotEnoughCashInAtm() {
 
         Map<Integer, Integer> actualContents = new HashMap<Integer, Integer>();
@@ -89,14 +90,14 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD");
+        Account account = new Account(new BigDecimal(100), "AUD", 12345);
 
         Customer customer1 = new Customer(1234, 12345, account);
 
         newAtm.validDispense(new BigDecimal(50), customer1);
     }
 
-    @Test(expected = NotEnoughCashException.class) //TODO use different exception?
+    @Test(expected = NotEnoughCashInAccountException.class)
     public void shouldInvalidateDispenseWhenNotEnoughCashInUsersAccount() {
 
         Map<Integer, Integer> actualContents = new HashMap<Integer, Integer>();
@@ -107,7 +108,7 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Account account = new Account(new BigDecimal(0), "AUD");
+        Account account = new Account(new BigDecimal(0), "AUD", 12345);
 
         Customer customer1 = new Customer(1234, 12345, account);
 
@@ -125,7 +126,7 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(atmContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD");
+        Account account = new Account(new BigDecimal(100), "AUD", 12345);
 
         Customer customer1 = new Customer(1234, 12345, account);
 
@@ -161,7 +162,7 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(atmContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD");
+        Account account = new Account(new BigDecimal(100), "AUD", 12345);
 
         Customer customer1 = new Customer(1234, 12345, account);
 
@@ -216,7 +217,7 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD");
+        Account account = new Account(new BigDecimal(100), "AUD", 12345);
 
         Customer customer1 = new Customer(1234, 12345, account);
 

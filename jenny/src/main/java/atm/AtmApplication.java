@@ -33,6 +33,7 @@ public class AtmApplication implements CommandLineRunner {
     @Override
     public void run(String... args) {
 
+
         Map<Integer, Integer> contents = new HashMap<>();
         contents.put(10, 10);
         contents.put(20, 20);

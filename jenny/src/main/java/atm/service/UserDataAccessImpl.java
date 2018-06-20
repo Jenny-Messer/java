@@ -1,6 +1,6 @@
 package atm.service;// Copyright (c) 2018 Travelex Ltd
 
-import atm.exceptions.UserAlreadyExists;
+import atm.exceptions.UserAlreadyExistsException;
 import atm.exceptions.UserNotFoundException;
 import atm.model.Account;
 import atm.model.BankEmployee;
@@ -19,8 +19,8 @@ public class UserDataAccessImpl implements UserDataAccess {
 
     public UserDataAccessImpl() {
 
-        Customer customer1 = new Customer(1234, 12345, new Account(new BigDecimal(100), "GBP"));
-        Customer customer2 = new Customer(9876, 23456, new Account(BigDecimal.ZERO, "AUD"));
+        Customer customer1 = new Customer(1234, 12345, new Account(new BigDecimal(100), "GBP", 12345));
+        Customer customer2 = new Customer(9876, 23456, new Account(BigDecimal.ZERO, "AUD", 23456));
 
         BankEmployee employee1 = new BankEmployee(1234, 34567);
         BankEmployee employee2 = new BankEmployee(9876, 45678);
@@ -40,7 +40,7 @@ public class UserDataAccessImpl implements UserDataAccess {
 
     public void addCustomer(int userId, int pin, BigDecimal balance, String currency){
 
-        Customer customer = new Customer(pin, userId, new Account(balance, currency));
+        Customer customer = new Customer(pin, userId, new Account(balance, currency, userId));
 
         Optional<User> userOpt = getUser(customer.getUserNumber());
 
@@ -48,7 +48,7 @@ public class UserDataAccessImpl implements UserDataAccess {
             users.put(customer.getUserNumber(), customer);
         }
         else{
-            throw new UserAlreadyExists();
+            throw new UserAlreadyExistsException();
         }
     }
 
@@ -61,7 +61,7 @@ public class UserDataAccessImpl implements UserDataAccess {
             users.put(employee.getUserNumber(), employee);
         }
         else{
-            throw new UserAlreadyExists();
+            throw new UserAlreadyExistsException();
         }
     }
 
@@ -73,7 +73,7 @@ public class UserDataAccessImpl implements UserDataAccess {
         users.remove(user.getUserNumber());
     }
 
-    public void modifyUser(int userId, Integer newId, Integer newPin){
+    public void modifyUser(int userId, Integer newPin){
 
         Optional<User> userOpt = getUser(userId);
 
@@ -86,12 +86,11 @@ public class UserDataAccessImpl implements UserDataAccess {
         users.remove(user.getUserNumber());
 
         user.setPin(newPin);
-        user.setUserNumber(newId);
 
         users.put(user.getUserNumber(), user);
     }
 
-    public void modifyAccount(int userId, BigDecimal balance, String currency){
+    public void modifyAccount(int userId, int accountId, BigDecimal balance, String currency){
 
         Optional<User> userOpt = getUser(userId);
 
@@ -109,9 +108,9 @@ public class UserDataAccessImpl implements UserDataAccess {
 
     }
 
-    public void modifyCustomer(int userId, Integer newId, Integer newPin, BigDecimal balance, String currency){
-        modifyUser(userId, newId, newPin);
-        modifyAccount(userId, balance, currency);
+    public void modifyCustomer(int userId, Integer newPin, BigDecimal balance, String currency){
+        modifyUser(userId, newPin);
+        modifyAccount(userId, userId, balance, currency);
     }
 
 }

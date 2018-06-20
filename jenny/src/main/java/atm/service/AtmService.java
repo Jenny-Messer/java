@@ -1,7 +1,8 @@
 package atm.service;// Copyright (c) 2018 Travelex Ltd
 
 import atm.exceptions.LoginFailedException;
-import atm.exceptions.NotEnoughCashException;
+import atm.exceptions.NotEnoughCashInAccountException;
+import atm.exceptions.NotEnoughCashInAtmException;
 import atm.exceptions.UserNotFoundException;
 import atm.model.ATM;
 import atm.model.Customer;
@@ -80,7 +81,7 @@ public class AtmService {
                 atmWithdrawal.getContents().keySet()
                              .forEach(noteSize -> System.out.println(atmWithdrawal.getContents().get(noteSize) + " " + noteSize + " dollar note(s), "));
 
-            } catch (NotEnoughCashException e) {
+            } catch (NotEnoughCashInAtmException e) {
                 System.out.println("Not enough cash in ATM");
             }
 
@@ -116,7 +117,7 @@ public class AtmService {
     public void checkBalanceEnoughToWithdraw(BigDecimal withdrawAmount, Customer customer){
 
         if (0 < withdrawAmount.compareTo(customer.getAccount().getBalance())) {
-            throw new NotEnoughCashException();
+            throw new NotEnoughCashInAccountException();
         }
 
     }
