@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import java.util.UUID;
+
+//this stuff allows the rest call to accept any user object
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.PROPERTY,
@@ -17,21 +20,21 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public abstract class User {
 
-    private int userNumber;
+    private UUID userNumber;
     private int pin;
 
     @JsonCreator
     public User(@JsonProperty("pin") int pin,
-                @JsonProperty("userNumber") int userNumber) {
+                @JsonProperty("userNumber") UUID userNumber) {
         this.pin = pin;
         this.userNumber = userNumber;
     }
 
-    public int getUserNumber() {
+    public UUID getUserNumber() {
         return userNumber;
     }
 
-    public void setUserNumber(int userNumber) {
+    public void setUserNumber(UUID userNumber) {
         this.userNumber = userNumber;
     }
 

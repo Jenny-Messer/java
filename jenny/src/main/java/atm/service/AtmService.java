@@ -5,6 +5,7 @@ import atm.exceptions.NotEnoughCashInAccountException;
 import atm.exceptions.NotEnoughCashInAtmException;
 import atm.exceptions.UserNotFoundException;
 import atm.model.ATM;
+import atm.model.Account;
 import atm.model.Customer;
 import atm.model.User;
 import atm.model.Withdrawal;
@@ -16,6 +17,7 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Scanner;
+import java.util.UUID;
 
 @Service
 public class AtmService {
@@ -26,7 +28,10 @@ public class AtmService {
     @Autowired
     private ExchangeService exchangeService;
 
-    public void withdraw(ATM atm, Customer customer){
+    public void withdraw(ATM atm, Customer customer, UUID accountId){
+
+        Account account = customer.getAccounts().get(accountId);
+
         BigDecimal requestedAmount = BigDecimal.ZERO;
 
         System.out.println("\nEnter amount to withdraw: ");
@@ -38,12 +43,12 @@ public class AtmService {
 
         //check if user's currency is same as ATM currency
 
-        if (!customer.getAccount().getCurrency().equals(atm.getCurrency())){
+        if (!account.getCurrency().equals(atm.getCurrency())){
 
             BigDecimal exchangedRequestedAmount =
-                    exchangeService.findRightConversion(requestedAmount, customer.getAccount().getCurrency(), atm.getCurrency());
+                    exchangeService.findRightConversion(requestedAmount, account.getCurrency(), atm.getCurrency());
 
-            System.out.println("Your currency is " + customer.getAccount().getCurrency()
+            System.out.println("Your currency is " + account.getCurrency()
                                        + ", this ATM dispenses " + atm.getCurrency() + ". \n"
                                        + "You requested " + requestedAmount
                                        + "  the ATM will attempt to dispense  " + exchangedRequestedAmount + ".\n"
@@ -60,21 +65,22 @@ public class AtmService {
 
                 requestedAmount = validPositiveInput(requestedAmount);
                 //this requested amount is in atm currency
-                BigDecimal amountToRemove = exchangeService.findRightConversion(requestedAmount, atm.getCurrency(), customer.getAccount().getCurrency());
+                BigDecimal amountToRemove = exchangeService.findRightConversion(requestedAmount, atm.getCurrency(), account.getCurrency());
 
-                checkBalanceEnoughToWithdraw(amountToRemove, customer);
+                checkBalanceEnoughToWithdraw(amountToRemove, customer, account);
 
             }
             else{
                 requestedAmount = exchangedRequestedAmount;
-                checkBalanceEnoughToWithdraw(requestedAmount, customer);
+                checkBalanceEnoughToWithdraw(requestedAmount, customer, account);
             }
 
 
             try {
                 Withdrawal atmWithdrawal = atm.validDispense(requestedAmount, customer);
-
-                exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(atm.getCurrency(), customer.getUserNumber(),atmWithdrawal.getContents() );
+                                //(String atmCurrency, Account account, Map<Integer, Integer>
+                //            removedNotes){
+                exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(atm.getCurrency(), account,atmWithdrawal.getContents() );
 
                 System.out.println("Withdraw successful \nyou withdrew :");
 
@@ -114,22 +120,24 @@ public class AtmService {
     }
 
     //terrible name
-    public void checkBalanceEnoughToWithdraw(BigDecimal withdrawAmount, Customer customer){
+    public void checkBalanceEnoughToWithdraw(BigDecimal withdrawAmount, Customer customer, Account account){
 
-        if (0 < withdrawAmount.compareTo(customer.getAccount().getBalance())) {
+        if (0 < withdrawAmount.compareTo(account.getBalance())) {
             throw new NotEnoughCashInAccountException();
         }
 
     }
 
-    public void checkBalance(Customer customer){
+    public void checkBalance(Customer customer, UUID accountId){
 
-        System.out.println("The balance for account " + customer.getUserNumber() + " is $" + customer.getAccount().getBalance());
+        Account account = customer.getAccounts().get(accountId);
+
+        System.out.println("The balance for account " + customer.getUserNumber() + " is $" + account.getBalance());
 
     }
 
 
-    public User login(int userId, int pin) {
+    public User login(UUID userId, int pin) {
         Optional<User> userOpt = userDataAccess.getUser(userId);
         User user = userOpt.orElseThrow(UserNotFoundException::new);
 

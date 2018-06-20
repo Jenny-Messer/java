@@ -14,6 +14,7 @@ import atm.service.AtmService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.UUID;
 
 @SpringBootApplication
 @ComponentScan
@@ -52,19 +53,25 @@ public class AtmApplication implements CommandLineRunner {
         while (!exit && login) {
 
             System.out.println("Login: \nEnter Customer Number: ");
-            int enteredCustomerNumber = scanner.nextInt();
+            String enteredCustomerNumber = scanner.nextLine();
             System.out.println("Enter Pin: ");
             int enteredPin = scanner.nextInt();
+            System.out.println("Enter Account Number: ");
+            String accountNumber = scanner.nextLine();
 
-            User user = atmService.login(enteredCustomerNumber, enteredPin);
+            UUID customerId = UUID.fromString(enteredCustomerNumber);
+            UUID accountId = UUID.fromString(accountNumber);
+
+
+            User user = atmService.login(customerId, enteredPin);
 
             if (user instanceof Customer) {
                 System.out.println("Withdraw(1), check balance (2), or exit? :");
                 int withdrawOrRefill = scanner.nextInt();
 
                 switch (withdrawOrRefill){
-                    case 1: atmService.withdraw(atm, (Customer) user); break;
-                    case 2: atmService.checkBalance((Customer) user); break;
+                    case 1: atmService.withdraw(atm, (Customer) user, accountId); break;
+                    case 2: atmService.checkBalance((Customer) user, accountId); break;
                     default: exit = true;
                 }
 

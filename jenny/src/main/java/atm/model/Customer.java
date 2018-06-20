@@ -4,22 +4,30 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Customer extends User {
 
-    private Account account;
+    private Map<UUID , Account> accounts = new HashMap<>();
 
     @JsonCreator
     public Customer(@JsonProperty("pin") int pin,
-                    @JsonProperty("customerNumber") int customerNumber,
+                    @JsonProperty("customerNumber") UUID customerNumber,
                     @JsonProperty("account") Account account) {
         super(pin, customerNumber);
 
-        this.account = account;
+        this.accounts.put(account.getAccountId(), account);
     }
 
-    public Account getAccount() {
-        return account;
-    } //TODO change when user can have multiple accounts
+    public Map<UUID, Account> getAccounts() {
+        return this.accounts;
+    }
+
+    public void addAccount(Account account){
+        this.accounts.put(account.getAccountId(), account);
+    }
 
 }

@@ -14,6 +14,7 @@ import atm.service.UserDataAccessImpl;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /*
 Tests TODO:
@@ -69,9 +70,12 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD", 12345);
+        UUID accountId = UUID.randomUUID();
+        UUID customerId = UUID.randomUUID();
 
-        Customer customer1 = new Customer(1234, 12345, account);
+        Account account = new Account(new BigDecimal(100), "AUD", accountId);
+
+        Customer customer1 = new Customer(1234, customerId, account);
 
         Withdrawal isValidDispense = newAtm.validDispense(new BigDecimal(20), customer1);
 
@@ -90,9 +94,12 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD", 12345);
+        UUID accountId = UUID.randomUUID();
+        UUID customerId = UUID.randomUUID();
 
-        Customer customer1 = new Customer(1234, 12345, account);
+        Account account = new Account(new BigDecimal(100), "AUD", accountId);
+
+        Customer customer1 = new Customer(1234, customerId, account);
 
         newAtm.validDispense(new BigDecimal(50), customer1);
     }
@@ -108,9 +115,12 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Account account = new Account(new BigDecimal(0), "AUD", 12345);
+        UUID accountId = UUID.randomUUID();
+        UUID customerId = UUID.randomUUID();
 
-        Customer customer1 = new Customer(1234, 12345, account);
+        Account account = new Account(new BigDecimal(0), "AUD", accountId);
+
+        Customer customer1 = new Customer(1234, customerId, account);
 
         newAtm.validDispense(new BigDecimal(50), customer1);
     }
@@ -126,9 +136,12 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(atmContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD", 12345);
+        UUID accountId = UUID.randomUUID();
+        UUID customerId = UUID.randomUUID();
 
-        Customer customer1 = new Customer(1234, 12345, account);
+        Account account = new Account(new BigDecimal(100), "AUD", accountId);
+
+        Customer customer1 = new Customer(1234, customerId, account);
 
         Withdrawal withdrawal = newAtm.validDispense(new BigDecimal(20), customer1);
 
@@ -162,9 +175,12 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(atmContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD", 12345);
+        UUID accountId = UUID.randomUUID();
+        UUID customerId = UUID.randomUUID();
 
-        Customer customer1 = new Customer(1234, 12345, account);
+        Account account = new Account(new BigDecimal(100), "AUD", accountId);
+
+        Customer customer1 = new Customer(1234, customerId, account);
 
         Withdrawal withdrawal = newAtm.validDispense(new BigDecimal(20), customer1);
 
@@ -217,9 +233,12 @@ public class AustralianATMTest {
 
         AustralianATM newAtm = new AustralianATM(actualContents);
 
-        Account account = new Account(new BigDecimal(100), "AUD", 12345);
+        UUID accountId = UUID.randomUUID();
+        UUID customerId = UUID.randomUUID();
 
-        Customer customer1 = new Customer(1234, 12345, account);
+        Account account = new Account(new BigDecimal(100), "AUD", accountId);
+
+        Customer customer1 = new Customer(1234, customerId, account);
 
 
 
@@ -234,19 +253,19 @@ public class AustralianATMTest {
         UserDataAccessImpl userDataAccess = new UserDataAccessImpl();
         ExchangeServiceImpl exchangeService = new ExchangeServiceImpl(userDataAccess);
 
-        exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(newAtm.getCurrency(), customer1.getUserNumber(),removedNotes );
+        exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(newAtm.getCurrency(), account,removedNotes );
 
-        assertEquals(customer1.getAccount().getBalance(), new BigDecimal(80));
+        assertEquals(account.getBalance(), new BigDecimal(80));
 
         removedNotes.put(10, 0);
         removedNotes.put(20, 0);
         removedNotes.put(50, 0);
         removedNotes.put(100, -10);
 
-        exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(newAtm.getCurrency(), customer1.getUserNumber(),removedNotes );
+        exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(newAtm.getCurrency(), account,removedNotes );
 
 
-        assertEquals(customer1.getAccount().getBalance(), new BigDecimal(1080));
+        assertEquals(account.getBalance(), new BigDecimal(1080));
 
 
     }

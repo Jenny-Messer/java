@@ -5,6 +5,7 @@ package atm.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.UUID;
 
 import java.math.BigDecimal;
 
@@ -18,7 +19,7 @@ public class Account {
     @JsonCreator
     public Account(@JsonProperty("balance") BigDecimal balance,
                    @JsonProperty("currency") String currency,
-                   @JsonProperty("accountId") int accountId) {
+                   @JsonProperty("accountId") UUID accountId) {
         this.balance = balance;
         this.currency = currency;
         this.accountId = accountId;
@@ -28,15 +29,15 @@ public class Account {
 
     private String currency;
 
-    public int getAccountId() {
+    public UUID getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(int accountId) {
+    public void setAccountId(UUID accountId) {
         this.accountId = accountId;
     }
 
-    private int accountId; //TEMPORARY - account ID is always set to the user's ID, must change when 1 user has multiple accounts
+    private UUID accountId;
 
     public BigDecimal getBalance() {
         return balance;

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -30,8 +31,15 @@ public class UserController {
     /employee/{userId}/ - POST
      */
 
+    /*
+    TODO
+    add customer/employee/account broken
+    slightly change urls
+    remove accounts from customers
+     */
+
     @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-    public User getUser(@PathVariable Integer userId){
+    public User getUser(@PathVariable UUID userId){
 
         Optional<User> userOpt = userDataAccess.getUser(userId);
         User user = userOpt.orElseThrow(UserNotFoundException::new);
@@ -40,14 +48,13 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/account/{accountId}", method = RequestMethod.GET)
-    public Account getAccount(@PathVariable Integer accountId){
+    @RequestMapping(value = "/user/{userId}/account/{accountId}", method = RequestMethod.GET)
+    public Account getAccount(@PathVariable UUID userId, @PathVariable UUID accountId){
 
-        //TODO once users have multiple accounts a real account id lookup need to me made
-        Optional<User> userOpt = userDataAccess.getUser(accountId);
+        Optional<User> userOpt = userDataAccess.getUser(userId);
         Customer customer = (Customer) userOpt.orElseThrow(UserNotFoundException::new);
 
-        Account account = customer.getAccount();
+        Account account = userDataAccess.getAccount(customer, accountId);
 
         return account;
 
@@ -55,17 +62,19 @@ public class UserController {
 
     //patch
     @RequestMapping(value = "/user/{userId}/account/{accountId}", method = RequestMethod.PATCH)
-    public Account modifyAccount(@PathVariable int userId, @PathVariable int accountId, @RequestBody Account account){
+    public Account modifyAccount(@PathVariable UUID userId, @PathVariable UUID accountId, @RequestBody Account account){
+
+        //TODO modify account holder(s) ??
 
         userDataAccess.modifyAccount(userId, accountId, account.getBalance(), account.getCurrency());
 
-        return getAccount(accountId);
+        return getAccount(userId, accountId);
 
     }
 
     //patch
     @RequestMapping(value = "/user/{userId}/", method = RequestMethod.PATCH)
-    public User modifyUser(@PathVariable Integer userId, @RequestBody User user){
+    public User modifyUser(@PathVariable UUID userId, @RequestBody User user){
 
         userDataAccess.modifyUser(userId, user.getPin());
 
@@ -73,49 +82,44 @@ public class UserController {
 
     }
 
-    @RequestMapping(value = "/customer/{userId}/", method = RequestMethod.PATCH)
-    public User modifyCustomer(@PathVariable Integer userId, @RequestBody Customer customer){
-
-        userDataAccess.modifyUser(userId, customer.getPin());
-
-        return getUser(userId);
-
-    }
-
-    //not needed now @RequestBody User works??
-    /*
-
-    @RequestMapping(value = "/employee/{userId}/", method = RequestMethod.PATCH)
-    public User modifyCustomer(@PathVariable Integer userId, @RequestBody BankEmployee employee){
-
-        userDataAccess.modifyUser(userId, employee.getPin());
-
-        return getUser(userId);
-
-    }
-
-    //modifyCustomer(int userId, Integer newId, Integer newPin, BigDecimal balance, String currency)
-
     //post
-    @RequestMapping(value = "/customer/{userId}/", method = RequestMethod.POST)
-    public User addCustomer(@PathVariable int userId, @RequestBody Customer customer){
+    @RequestMapping(value = "/customer", method = RequestMethod.POST)
+    public User addCustomer(@RequestBody Customer customer){
 
-        userDataAccess.addCustomer(userId, customer.getPin(), customer.getAccount().getBalance(), customer.getAccount().getCurrency());
 
-        return getUser(userId);
+        UUID uuid = UUID.randomUUID();
+        customer.setUserNumber(uuid);
+        userDataAccess.addCustomer(customer);
+
+        return getUser(uuid);
 
     }
 
-    */
 
     //post
     @RequestMapping(value = "/employee/{userId}/", method = RequestMethod.POST)
-    public User addEmployee(@PathVariable int userId, @RequestBody BankEmployee employee){
+    public User addEmployee(@PathVariable UUID userId, @RequestBody BankEmployee employee){
 
+        UUID uuid = UUID.randomUUID();
         userDataAccess.addEmployee(userId, employee.getPin());
 
-        return getUser(userId);
+        return getUser(uuid);
 
     }
+
+    @RequestMapping(value = "/account/{userId}/", method = RequestMethod.POST)
+    public Account addAccount(@PathVariable UUID userId, @RequestBody Account account){
+
+        UUID uuid = UUID.randomUUID();
+        account.setAccountId(uuid);
+        userDataAccess.addAccount(userId, account);
+
+
+        return getAccount(userId, uuid);
+
+    }
+
+
+
 
 }

@@ -12,14 +12,15 @@ package atm.service;
 //provide with atm and userdataccess
 
 import atm.exceptions.UserNotFoundException;
+import atm.model.Account;
 import atm.model.Customer;
 import atm.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ExchangeServiceImpl implements ExchangeService {
@@ -34,13 +35,15 @@ public class ExchangeServiceImpl implements ExchangeService {
     }
 
     //user currency to given
-    public BigDecimal exchange(BigDecimal exchangeAmount, int userId, String targetCurrency) {
+    public BigDecimal exchange(BigDecimal exchangeAmount, UUID userId, UUID accountId, String targetCurrency) {
 
         //get user's currency
         Optional<User> userOpt = userDataAccess.getUser(userId);
         Customer customer = (Customer) userOpt.orElseThrow(UserNotFoundException::new);
 
-        String customerCurrency = customer.getAccount().getCurrency();
+        Account account = customer.getAccounts().get(accountId);
+
+        String customerCurrency = account.getCurrency();
 
         return findRightConversion(exchangeAmount, customerCurrency,targetCurrency);
 
@@ -61,25 +64,24 @@ public class ExchangeServiceImpl implements ExchangeService {
         return converted;
     }
 
-    public void getValueToRemoveFromBalanceInCorrectCurrency(String atmCurrency, int customerId, Map<Integer, Integer> removedNotes){
+    public void getValueToRemoveFromBalanceInCorrectCurrency(String atmCurrency, Account account, Map<Integer, Integer>
+            removedNotes){
 
-        Optional<User> userOpt = userDataAccess.getUser(customerId);
-        Customer customer = (Customer) userOpt.orElseThrow(UserNotFoundException::new);
 
         int total = 0;
         for (Map.Entry<Integer, Integer> noteEntry : removedNotes.entrySet()) {
             total += noteEntry.getKey() * noteEntry.getValue();
         }
 
-        if (atmCurrency.equals(customer.getAccount().getCurrency())){
-            customer.getAccount().setBalance(customer.getAccount().getBalance().subtract(new BigDecimal(total)));
+        if (atmCurrency.equals(account.getCurrency())){
+            account.setBalance(account.getBalance().subtract(new BigDecimal(total)));
         }
         else{
             //convert total to user's currency then - from balance
             //findRightConversion (BigDecimal exchangeAmount, String startCurrency, String targetCurrency)
-            BigDecimal newTotal = findRightConversion(new BigDecimal(total) ,atmCurrency, customer.getAccount().getCurrency());
+            BigDecimal newTotal = findRightConversion(new BigDecimal(total) ,atmCurrency, account.getCurrency());
 
-            customer.getAccount().setBalance(customer.getAccount().getBalance().subtract(newTotal));
+            account.setBalance(account.getBalance().subtract(newTotal));
 
         }
 
