@@ -1,12 +1,15 @@
 // Copyright (c) 2018 Travelex Ltd
 
 package atm.controller;
+import atm.entity.AccountEntity;
+import atm.entity.CustomerEntity;
 import atm.exceptions.UserNotFoundException;
 import atm.model.Account;
 import atm.model.BankEmployee;
 import atm.model.Customer;
 import atm.model.User;
-import atm.service.UserDataAccess;
+import atm.service.AccountDataAccess;
+import atm.service.CustomerDataAccess;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +23,10 @@ import java.util.UUID;
 public class UserController {
 
     @Autowired
-    private UserDataAccess userDataAccess;
+    private CustomerDataAccess customerDataAccess;
+
+    @Autowired
+    private AccountDataAccess accountDataAccess;
 
     /*
     /user/{userId} - GET
@@ -33,30 +39,35 @@ public class UserController {
 
     /*
     TODO
-    add customer/employee/account broken
-    slightly change urls
     remove accounts from customers
+
+    once accounts are separate from users:
+    modify user currently only changes pin, other thing to modify could be which accounts they are connected to
      */
 
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-    public User getUser(@PathVariable UUID userId){
+    @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET)
+    public Customer getCustomer(@PathVariable UUID customerId){
 
-        Optional<User> userOpt = userDataAccess.getUser(userId);
-        User user = userOpt.orElseThrow(UserNotFoundException::new);
+        Optional<CustomerEntity> userOpt = customerDataAccess.getCustomer(customerId);
 
-        return user;
+        CustomerEntity customerEntity = userOpt.orElseThrow(UserNotFoundException::new);
+
+        Customer customer = new Customer(customerEntity.getPin(), customerEntity.getId());
+
+        return customer;
 
     }
 
     @RequestMapping(value = "/user/{userId}/account/{accountId}", method = RequestMethod.GET)
     public Account getAccount(@PathVariable UUID userId, @PathVariable UUID accountId){
 
-        Optional<User> userOpt = userDataAccess.getUser(userId);
-        Customer customer = (Customer) userOpt.orElseThrow(UserNotFoundException::new);
+        Optional<AccountEntity> accountOpt = accountDataAccess.getAccount(userId, accountId);
+        //TODO translate
+        accountOpt.orElseThrow(RuntimeException::new);
+        //throw exception if not found
 
-        Account account = userDataAccess.getAccount(customer, accountId);
-
-        return account;
+        AccountEntity accountEntity = accountOpt.get();
+        return new Account(accountEntity.getBalance(), accountEntity.getCurrency(), accountEntity.getAccountId());
 
     }
 
@@ -64,21 +75,19 @@ public class UserController {
     @RequestMapping(value = "/user/{userId}/account/{accountId}", method = RequestMethod.PATCH)
     public Account modifyAccount(@PathVariable UUID userId, @PathVariable UUID accountId, @RequestBody Account account){
 
-        //TODO modify account holder(s) ??
-
-        userDataAccess.modifyAccount(userId, accountId, account.getBalance(), account.getCurrency());
+        accountDataAccess.modifyAccount(userId, accountId, account.getBalance(), account.getCurrency());
 
         return getAccount(userId, accountId);
 
     }
 
     //patch
-    @RequestMapping(value = "/user/{userId}/", method = RequestMethod.PATCH)
-    public User modifyUser(@PathVariable UUID userId, @RequestBody User user){
+    @RequestMapping(value = "/user/{userId}", method = RequestMethod.PATCH)
+    public User modifyUser(@PathVariable UUID userId, @RequestBody Customer user){
 
-        userDataAccess.modifyUser(userId, user.getPin());
+        customerDataAccess.modifyCustomer(userId, user.getPin());
 
-        return getUser(userId);
+        return getCustomer(userId);
 
     }
 
@@ -89,37 +98,42 @@ public class UserController {
 
         UUID uuid = UUID.randomUUID();
         customer.setUserNumber(uuid);
-        userDataAccess.addCustomer(customer);
 
-        return getUser(uuid);
+        //TODO translate from Customer to CustomerEntity and send that
+        CustomerEntity customer1 = new CustomerEntity();
+        customer1.setId(uuid);
+        customer1.setPin(customer.getPin());
+
+        customerDataAccess.addCustomer(customer1);
+
+        return getCustomer(uuid);
 
     }
 
 
+    /*
     //post
-    @RequestMapping(value = "/employee/{userId}/", method = RequestMethod.POST)
-    public User addEmployee(@PathVariable UUID userId, @RequestBody BankEmployee employee){
+    @RequestMapping(value = "/employee", method = RequestMethod.POST)
+    public User addEmployee(@RequestBody BankEmployee employee){
 
         UUID uuid = UUID.randomUUID();
-        userDataAccess.addEmployee(userId, employee.getPin());
+        customerDataAccess.addEmployee(uuid, employee.getPin());
 
-        return getUser(uuid);
+        return getCustomer(uuid);
 
     }
+    */
 
-    @RequestMapping(value = "/account/{userId}/", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{userId}/account", method = RequestMethod.POST)
     public Account addAccount(@PathVariable UUID userId, @RequestBody Account account){
 
         UUID uuid = UUID.randomUUID();
         account.setAccountId(uuid);
-        userDataAccess.addAccount(userId, account);
-
+        accountDataAccess.addAccount(userId, account);
 
         return getAccount(userId, uuid);
 
     }
-
-
 
 
 }

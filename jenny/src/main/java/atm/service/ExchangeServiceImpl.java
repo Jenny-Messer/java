@@ -11,6 +11,8 @@ package atm.service;
 
 //provide with atm and userdataccess
 
+import atm.entity.AccountEntity;
+import atm.entity.CustomerEntity;
 import atm.exceptions.UserNotFoundException;
 import atm.model.Account;
 import atm.model.Customer;
@@ -26,26 +28,21 @@ import java.util.UUID;
 public class ExchangeServiceImpl implements ExchangeService {
 
     @Autowired
-    private UserDataAccess userDataAccess;
+    private AccountDataAccess accountDataAccess;
 
     private BigDecimal GbpToAud = new BigDecimal(1.78);
-
-    public ExchangeServiceImpl(UserDataAccess userDataAccess) {
-        this.userDataAccess = userDataAccess;
-    }
 
     //user currency to given
     public BigDecimal exchange(BigDecimal exchangeAmount, UUID userId, UUID accountId, String targetCurrency) {
 
         //get user's currency
-        Optional<User> userOpt = userDataAccess.getUser(userId);
-        Customer customer = (Customer) userOpt.orElseThrow(UserNotFoundException::new);
+        Optional<AccountEntity> userOpt = accountDataAccess.getAccount(userId, accountId);
 
-        Account account = customer.getAccounts().get(accountId);
+        //
+        AccountEntity accountEntity = userOpt.orElseThrow(RuntimeException::new);
 
-        String customerCurrency = account.getCurrency();
-
-        return findRightConversion(exchangeAmount, customerCurrency,targetCurrency);
+        //TODO fix this
+        return findRightConversion(exchangeAmount, accountEntity.getCurrency() ,targetCurrency);
 
     }
 

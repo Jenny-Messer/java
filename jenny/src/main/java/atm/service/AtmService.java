@@ -1,5 +1,6 @@
 package atm.service;// Copyright (c) 2018 Travelex Ltd
 
+import atm.entity.CustomerEntity;
 import atm.exceptions.LoginFailedException;
 import atm.exceptions.NotEnoughCashInAccountException;
 import atm.exceptions.NotEnoughCashInAtmException;
@@ -23,7 +24,7 @@ import java.util.UUID;
 public class AtmService {
 
     @Autowired
-    private UserDataAccess userDataAccess;
+    private CustomerDataAccess customerDataAccess;
 
     @Autowired
     private ExchangeService exchangeService;
@@ -137,9 +138,9 @@ public class AtmService {
     }
 
 
-    public User login(UUID userId, int pin) {
-        Optional<User> userOpt = userDataAccess.getUser(userId);
-        User user = userOpt.orElseThrow(UserNotFoundException::new);
+    public Customer login(UUID userId, int pin) {
+        Optional<CustomerEntity> customerOpt = customerDataAccess.getCustomer(userId);
+        CustomerEntity user = customerOpt.orElseThrow(UserNotFoundException::new);
 
         if (user.getPin() != pin) {
             throw new LoginFailedException();
@@ -147,7 +148,11 @@ public class AtmService {
 
         System.out.println("Login successful");
 
-        return user;
+        //TODO translate
+
+        Customer customer = new Customer(user.getPin(), user.getId());
+
+        return customer;
 
     }
 

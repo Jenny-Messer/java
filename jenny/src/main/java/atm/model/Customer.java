@@ -15,11 +15,8 @@ public class Customer extends User {
 
     @JsonCreator
     public Customer(@JsonProperty("pin") int pin,
-                    @JsonProperty("customerNumber") UUID customerNumber,
-                    @JsonProperty("account") Account account) {
+                    @JsonProperty("customerNumber") UUID customerNumber) {
         super(pin, customerNumber);
-
-        this.accounts.put(account.getAccountId(), account);
     }
 
     public Map<UUID, Account> getAccounts() {

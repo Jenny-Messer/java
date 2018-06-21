@@ -11,12 +11,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import atm.service.AtmService;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.UUID;
 
 @SpringBootApplication
+@EnableJpaRepositories
 @ComponentScan
 public class AtmApplication implements CommandLineRunner {
 
@@ -84,7 +89,6 @@ public class AtmApplication implements CommandLineRunner {
                     default: exit = true;
                 }
             }
-
 
 
         }

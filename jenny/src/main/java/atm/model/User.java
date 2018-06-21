@@ -11,7 +11,6 @@ import java.util.UUID;
 //this stuff allows the rest call to accept any user object
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
         property = "type")
 @JsonSubTypes({
         @JsonSubTypes.Type(value = Customer.class, name = "Customer"),

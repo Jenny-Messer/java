@@ -12,9 +12,11 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Account {
 
-    public void setCurrency(String currency) {
-        this.currency = currency;
-    }
+    private BigDecimal balance;
+
+    private String currency;
+
+    private UUID accountId;
 
     @JsonCreator
     public Account(@JsonProperty("balance") BigDecimal balance,
@@ -25,30 +27,28 @@ public class Account {
         this.accountId = accountId;
     }
 
-    private BigDecimal balance;
-
-    private String currency;
-
     public UUID getAccountId() {
         return accountId;
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
     public void setAccountId(UUID accountId) {
         this.accountId = accountId;
     }
 
-    private UUID accountId;
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
-    }
-
-    public String getCurrency() {
-        return currency;
     }
 
 }

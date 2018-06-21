@@ -9,7 +9,7 @@ import atm.model.Customer;
 import atm.model.Withdrawal;
 import org.junit.Test;
 import atm.service.ExchangeServiceImpl;
-import atm.service.UserDataAccessImpl;
+import atm.service.CustomerDataAccessImpl;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -75,7 +75,8 @@ public class AustralianATMTest {
 
         Account account = new Account(new BigDecimal(100), "AUD", accountId);
 
-        Customer customer1 = new Customer(1234, customerId, account);
+        Customer customer1 = new Customer(1234, customerId);
+        customer1.addAccount(account);
 
         Withdrawal isValidDispense = newAtm.validDispense(new BigDecimal(20), customer1);
 
@@ -99,7 +100,8 @@ public class AustralianATMTest {
 
         Account account = new Account(new BigDecimal(100), "AUD", accountId);
 
-        Customer customer1 = new Customer(1234, customerId, account);
+        Customer customer1 = new Customer(1234, customerId);
+        customer1.addAccount(account);
 
         newAtm.validDispense(new BigDecimal(50), customer1);
     }
@@ -120,7 +122,8 @@ public class AustralianATMTest {
 
         Account account = new Account(new BigDecimal(0), "AUD", accountId);
 
-        Customer customer1 = new Customer(1234, customerId, account);
+        Customer customer1 = new Customer(1234, customerId);
+        customer1.addAccount(account);
 
         newAtm.validDispense(new BigDecimal(50), customer1);
     }
@@ -141,7 +144,8 @@ public class AustralianATMTest {
 
         Account account = new Account(new BigDecimal(100), "AUD", accountId);
 
-        Customer customer1 = new Customer(1234, customerId, account);
+        Customer customer1 = new Customer(1234, customerId);
+        customer1.addAccount(account);
 
         Withdrawal withdrawal = newAtm.validDispense(new BigDecimal(20), customer1);
 
@@ -180,7 +184,8 @@ public class AustralianATMTest {
 
         Account account = new Account(new BigDecimal(100), "AUD", accountId);
 
-        Customer customer1 = new Customer(1234, customerId, account);
+        Customer customer1 = new Customer(1234, customerId);
+        customer1.addAccount(account);
 
         Withdrawal withdrawal = newAtm.validDispense(new BigDecimal(20), customer1);
 
@@ -238,8 +243,8 @@ public class AustralianATMTest {
 
         Account account = new Account(new BigDecimal(100), "AUD", accountId);
 
-        Customer customer1 = new Customer(1234, customerId, account);
-
+        Customer customer1 = new Customer(1234, customerId);
+        customer1.addAccount(account);
 
 
         //atm.model.Withdrawal isValidDispense = newAtm.validDispense(20, customer1);
@@ -250,8 +255,8 @@ public class AustralianATMTest {
         removedNotes.put(50, 0);
         removedNotes.put(100, 0);
 
-        UserDataAccessImpl userDataAccess = new UserDataAccessImpl();
-        ExchangeServiceImpl exchangeService = new ExchangeServiceImpl(userDataAccess);
+//        CustomerDataAccessImpl userDataAccess = new CustomerDataAccessImpl();
+        ExchangeServiceImpl exchangeService = new ExchangeServiceImpl(); //userDataAccess
 
         exchangeService.getValueToRemoveFromBalanceInCorrectCurrency(newAtm.getCurrency(), account,removedNotes );
 
